@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-mono: 'JetBrains Mono', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans Arabic', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #05070a;
+    color: #e2e8f0;
+    font-family: var(--font-mono);
+  }
+
+  #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  ::selection {
+    background-color: #10b981;
+    color: #022c22;
+  }
+}
+
+/* Custom terminal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Terminal phosphor themes */
+.theme-matrix {
+  --term-accent: #10b981;
+  --term-accent-dim: rgba(16, 185, 129, 0.15);
+  --term-accent-border: rgba(16, 185, 129, 0.4);
+  --term-glow: 0 0 10px rgba(16, 185, 129, 0.35);
+}
+
+.theme-amber {
+  --term-accent: #f59e0b;
+  --term-accent-dim: rgba(245, 158, 11, 0.15);
+  --term-accent-border: rgba(245, 158, 11, 0.4);
+  --term-glow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+.theme-cyan {
+  --term-accent: #06b6d4;
+  --term-accent-dim: rgba(6, 182, 212, 0.15);
+  --term-accent-border: rgba(6, 182, 212, 0.4);
+  --term-glow: 0 0 10px rgba(6, 182, 212, 0.35);
+}
+
+.theme-mono {
+  --term-accent: #f1f5f9;
+  --term-accent-dim: rgba(241, 245, 249, 0.12);
+  --term-accent-border: rgba(241, 245, 249, 0.35);
+  --term-glow: 0 0 10px rgba(241, 245, 249, 0.25);
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink {
+    animation: none !important;
+  }
+}
+
+/* CRT scanlines effect (pseudo-element overlay so clicks pass through properly) */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.02),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 255, 0, 0.02)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  z-index: 20;
+}

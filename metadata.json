@@ -1,0 +1,6 @@
+{
+  "name": "PromptForge Terminal - Global Precision AI Prompt Synthesizer",
+  "description": "Minimalist global terminal generating millimetric, ultra-precise AI prompts from any language in the world.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
